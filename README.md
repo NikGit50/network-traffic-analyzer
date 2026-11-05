@@ -111,7 +111,7 @@ Future improvements:
 This project is developed for educational and cybersecurity learning purposes. Live packet capture and analysis should only be performed on networks where you have authorization.
 
 ## Author
-Nikhil Gupta
+Nikhil Kumar Gupta
 
 Computer Science and Engineering Student
 
