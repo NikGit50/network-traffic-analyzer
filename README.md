@@ -21,11 +21,12 @@ A beginner-friendly cybersecurity project developed using Python and Scapy to an
 ```text
 network-traffic-analyzer/
 │
-├── main.py
+├── .gitignore
+├── LICENSE
+├── README.md
 ├── create_sample.py
-├── sample_traffic.pcap
-├── analysis_result.csv
-└── README.md
+├── main.py
+└── sample_traffic.pcap
 ```
 
 ## Installation
