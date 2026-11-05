@@ -116,4 +116,3 @@ Nikhil Kumar Gupta
 
 Computer Science and Engineering Student
 
-GitHub: Add your GitHub profile URL here
