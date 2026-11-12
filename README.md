@@ -52,7 +52,6 @@ Live traffic analysis was developed and tested separately in a Linux/Xubuntu vir
 network-traffic-analyzer/
 │
 ├── .gitignore
-├── LICENSE
 ├── README.md
 ├── requirements.txt
 ├── create_sample.py
