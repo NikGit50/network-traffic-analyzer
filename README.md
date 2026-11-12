@@ -1,118 +1,191 @@
 # Network Traffic Analyzer Using Python and Scapy
 
 ## Overview
-A beginner-friendly cybersecurity project developed using Python and Scapy to analyze network packets from PCAP files. The tool identifies network protocols, extracts packet information, displays protocol statistics, and exports analysis results to a CSV file.
+
+A Python-based cybersecurity project developed using Python and Scapy to analyze network packets from PCAP files. The tool extracts packet information, identifies network protocols, analyzes network ports, calculates traffic statistics, and exports results to CSV format.
+
+The project was developed in two stages: offline PCAP analysis and separate live network traffic analysis in a Linux environment.
 
 ## Features
+
+### 1. Offline PCAP Analysis
+
 - Reads network packets from PCAP files.
 - Extracts source and destination IP addresses.
-- Identifies TCP and DNS packets.
-- Calculates packet sizes.
-- Counts packets by protocol.
-- Exports packet analysis results to CSV format.
+- Identifies TCP, UDP, and DNS packets.
+- Extracts DNS query domain names.
+- Calculates individual packet sizes.
+- Extracts source and destination ports.
+- Performs basic service identification using port numbers.
+- Supports protocol-based filtering.
+- Calculates protocol counts and percentages.
+- Calculates total packet count and data size.
+- Exports analysis results to CSV format.
 
-## Technologies Used
-- Python
-- Scapy
-- CSV Module
-- PCAP (Packet Capture)
+### 2. Live Network Traffic Analysis
+
+Live traffic analysis was developed and tested separately in a Linux/Xubuntu virtual machine.
+
+- Captures live network packets using Scapy's `sniff()` function.
+- Uses network interface selection for packet capture.
+- Supports packet-count and timeout-based capture.
+- Analyzes captured TCP, UDP, and DNS traffic.
+- Extracts source and destination IP addresses.
+- Extracts DNS query domain names.
+- Extracts source and destination ports.
+- Performs basic service identification.
+- Generates CSV reports containing captured traffic information.
+- Calculates protocol statistics and total captured data size.
+
+**Note:** The live traffic capture implementation is maintained separately and is not included in this public repository.
+
+## Technologies and Libraries Used
+
+- **Python:** Main programming language.
+- **Scapy:** Packet manipulation, PCAP processing, protocol analysis, and live packet capture using `sniff()`.
+- **CSV Module:** Exporting packet analysis results.
+- **PCAP:** Packet capture file format used for offline analysis.
 
 ## Project Structure
+
 ```text
 network-traffic-analyzer/
 │
 ├── .gitignore
 ├── LICENSE
 ├── README.md
+├── requirements.txt
 ├── create_sample.py
 ├── main.py
-└── sample_traffic.pcap
+├── sample_traffic.pcap
+└── sample_analysis_result.csv
 ```
 
 ## Installation
 
-1. Clone the repository:
+### 1. Clone the repository
+
 ```bash
-git clone (https://github.com/NikGit50/network-traffic-analyzer)
+git clone https://github.com/NikGit50/network-traffic-analyzer.git
 ```
 
-2. Navigate to the project directory:
+### 2. Navigate to the project directory
+
 ```bash
 cd network-traffic-analyzer
 ```
 
-3. Create a virtual environment:
+### 3. Create a virtual environment
+
 ```bash
 python -m venv .venv
 ```
 
-4. Activate the virtual environment:
+### 4. Activate the virtual environment
 
-Windows:
+**Windows:**
+
 ```cmd
 .venv\Scripts\activate
 ```
 
-Linux:
+**Linux:**
+
 ```bash
 source .venv/bin/activate
 ```
 
-5. Install Scapy:
+### 5. Install dependencies
+
 ```bash
-pip install scapy
+pip install -r requirements.txt
 ```
 
 ## Usage
 
-Generate synthetic network traffic:
+### Generate Synthetic Network Traffic
+
 ```bash
 python create_sample.py
 ```
 
-Run the analyzer:
+This generates a synthetic PCAP file named `sample_traffic.pcap`.
+
+### Run the Offline Analyzer
+
 ```bash
 python main.py
 ```
 
-The analyzer processes the generated PCAP file and creates `analysis_result.csv`.
+The analyzer processes the PCAP file and exports the analysis results to a CSV file.
+
+## Live Traffic Analysis – Development Details
+
+Live traffic analysis was implemented and tested separately in a Linux/Xubuntu virtual machine using the Scapy library.
+
+The primary Scapy function used for live packet capture was:
+
+```python
+sniff(iface="enp0s3", count=20, timeout=50)
+```
+
+Where:
+
+- `iface`: Specifies the network interface used for packet capture.
+- `count`: Specifies the maximum number of packets to capture.
+- `timeout`: Specifies the maximum capture duration in seconds.
+
+The captured packets were subsequently analyzed to identify protocols, extract network information, calculate traffic statistics, and generate CSV reports.
+
+The live-capture implementation is not distributed in this public repository.
 
 ## Sample Output
 
-```text
-===== PROTOCOL SUMMARY =====
-TCP: 2
-UDP: 0
-DNS: 2
-Other: 0
+The offline analyzer generates a CSV report containing:
 
-Total Packets: 4
-
-CSV file created successfully!
-```
+| Field | Description |
+|---|---|
+| Source IP | Packet source IP address |
+| Destination IP | Packet destination IP address |
+| Protocol | Identified network protocol |
+| Packet Size | Size of the packet in bytes |
+| Domain Name | Extracted DNS query domain |
+| Destination Port | Destination port number |
+| Source Port | Source port number |
+| Services | Basic service identification |
 
 ## Learning Objectives
+
 - Understanding network packet structures.
-- Learning TCP and DNS protocol identification.
+- Learning TCP, UDP, and DNS protocol identification.
 - Working with PCAP files.
 - Using Scapy for packet analysis.
-- Exporting network analysis data using Python.
+- Understanding network ports and service identification.
+- Implementing protocol-based filtering.
+- Calculating network traffic statistics.
+- Learning live packet capture concepts using Scapy's `sniff()` function.
+- Exporting packet analysis data using Python.
 
 ## Project Status
-**Ongoing Development**
 
-Future improvements:
-- DNS domain extraction.
-- Live network traffic capture.
-- Advanced protocol identification.
-- Network traffic statistics and visualization.
-- Suspicious traffic detection.
+**Offline PCAP Analysis:** Developed and tested.
+
+**Live Traffic Analysis:** Developed and tested separately in a Linux/Xubuntu virtual machine.
+
+**Public Repository:** Focuses on offline PCAP analysis using synthetic network traffic.
+
+## Ethical Considerations
+
+This project is intended for educational and defensive cybersecurity learning. Live traffic analysis was performed in a controlled virtual-machine environment. Packet capture should only be conducted on networks where proper authorization has been obtained.
 
 ## Disclaimer
-This project is developed for educational and cybersecurity learning purposes. Live packet capture and analysis should only be performed on networks where you have authorization.
+
+This project is developed for educational and authorized cybersecurity analysis. The public repository does not include the live packet-capture implementation or real captured network traffic.
 
 ## Author
-Nikhil Kumar Gupta
+
+**Nikhil Kumar Gupta**
 
 Computer Science and Engineering Student
 
+GitHub: https://github.com/NikGit50
