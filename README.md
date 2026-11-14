@@ -125,7 +125,7 @@ Live traffic analysis was implemented and tested separately in a Linux/Xubuntu v
 The primary Scapy function used for live packet capture was:
 
 ```python
-sniff(iface="enp0s3", count=20, timeout=50)
+sniff(iface, count, timeout)
 ```
 
 Where:
